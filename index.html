@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="chai-p-13 chai-m-2 chai-fs-8">Hello World</h1>
+
+    <script>
+        // sab utility object mein add honge
+        const utilityMap = {
+            'p': 'padding',
+            'm': 'margin',
+            'fs': 'font-size',
+            'rounded': 'border-radius'
+        };
+
+        // Saara elements select hoga jisme 'chai-' class ho
+        const elements = document.querySelectorAll('[class*="chai-"]');
+
+        elements.forEach(el => {
+            el.classList.forEach(className => {
+                if (className.startsWith('chai-')) {
+                    const parts = className.split('-'); // ['chai', 'p', '13']
+                    const type = parts[1];              // 'p', 'm', or 'fs'
+                    const value = Number(parts[2]);     // 13
+
+                    // Agar utility map mein exists karti hai
+                    if (utilityMap[type]) {
+                        const property = utilityMap[type];
+                        let finalValue;
+
+                        // 2. Dynamic Logic (Scaling)
+                        if (isNaN(value) || value < 2 || value > 12) {
+                            finalValue = (type === 'fs') ? "16px" : "4px"; // Default fallback
+                        } else {
+                            // Margin/Padding ke liye power of 2, Font-size/border ke liye alag logic 
+                            finalValue = (type === 'fs') || (type === 'rounded') ? `${value * 5}px` : `${value ** 2}px`;
+                        }
+
+                        // 3. Apply style dynamically
+                        el.style[property] = finalValue;
+                    }
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
