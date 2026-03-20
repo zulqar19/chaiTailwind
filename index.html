@@ -1,103 +1,164 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chai Tailwind</title>
-  </head>
 
-  <body class="chai-p-4 chai-m-4 chai-bg-#1e1e1e">
-    <h1
-      class="chai-text-color-#1e1e1e chai-bg-#f0f0f0 chai-italic-italic chai-shadow-inner chai-rounded-2 chai-pos-relative chai-text-center"
-    >
-      Chai Tailwind - Created by: Md Zulqarnain
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chai Tailwind</title>
+</head>
+
+<body class="chai-bg-#121212 chai-m-0 chai-p-0 chai-text-color-white" style="font-family: sans-serif;">
+
+  <!-- Navigation -->
+  <nav class="chai-p-6 chai-d-flex chai-pos-sticky chai-align-items-center"
+    style="justify-content: space-between; border-bottom: 1px solid #333;">
+    <div class="chai-fw-bold chai-fs-6 chai-text-color-#ffdd44">CHAI.css</div>
+    <div class="chai-d-flex chai-gap-4">
+      <a href="https://x.com/ZuLQarNaiN1920" target="_blank" class="chai-text-color-#aaa ">X</a>
+      <a href="https://github.com/zulqar19" target="_blank"
+        class="chai-text-color-#aaa chai-text-decoration-none">Github</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="chai-p-12 chai-text-center">
+    <h1 class="chai-fs-12 chai-fw-bold chai-m-4 chai-text-color-#ffffff">
+      Build Fast with <span class="chai-text-color-#ffdd44">Chai Tailwind</span>
     </h1>
-    <script>
-      // sab utility object mein add honge
-      const utilityMap = {
-        p: "padding",
-        pt: "paddingTop",
-        pb: "paddingBottom",
-        pl: "paddingLeft",
-        pr: "paddingRight",
-        m: "margin",
-        mt: "marginTop",
-        mb: "marginBottom",
-        ml: "marginLeft",
-        mr: "marginRight",
-        fs: "fontSize",
-        rounded: "borderRadius",
-        w: "width",
-        h: "height",
-        bw: "borderWidth",
-        gap: "gap",
-        z: "zIndex",
-      };
+    <p class="chai-fs-5 chai-text-color-#888 chai-m-6" style="max-width: 1200px; margin-inline: auto;">
+      A lightweight, dynamic CSS-in-JS utility engine. No build steps. No massive CSS files. Just pure logic.
+    </p>
 
-      const staticMap = {
-        text: "textAlign",
-        bg: "backgroundColor",
-        "text-color": "color",
-        d: "display",
-        pos: "position",
-        fw: "fontWeight",
-        italic: "fontStyle",
-        shadow: "boxShadow",
-        cursor: "cursor",
-        overflow: "overflow",
-      };
+    <!-- Social Buttons -->
+    <div class="chai-d-flex chai-m-8 chai-gap-4 chai-justify-content-center">
+      <a href="https://github.com/zulqar19"
+        class="chai-bg-#ffdd44 chai-text-color-#000 chai-p-4 chai-rounded-2 chai-fw-bold chai-text-decoration-none">
+        View Github
+      </a>
+      <a href="https://www.linkedin.com/in/zulqarnain-ansari-0ba82920b/"
+        class="chai-bg-#333 chai-text-color-#fff chai-p-4 chai-rounded-2 chai-text-decoration-none">
+        LinkedIn
+      </a>
+    </div>
+  </section>
 
-      function addInlineStyle(element, type, value) {
-        // Agar utility map mein exists karti hai
-        if (utilityMap[type]) {
-          const num = Number(value);
-          const property = utilityMap[type];
+  <!-- Feature Grid -->
+  <div class="chai-p-8 chai-d-flex chai-justify-content-center chai-gap-5 chai-flex-wrap-wrap">
+    <!-- Card 1 -->
+    <div class="chai-bg-#1e1e1e chai-p-6 chai-rounded-4 chai-shadow-inner"
+      style="width: 250px; border: 1px solid #333;">
+      <h3 class="chai-text-color-#ffdd44 chai-m-2">Dynamic Scaling</h3>
+      <p class="chai-fs-4 chai-text-color-#aaa">Padding and Margin scale using power-of-2 logic automatically.</p>
+    </div>
+    <!-- Card 2 -->
+    <div class="chai-bg-#1e1e1e chai-p-6 chai-rounded-4 chai-shadow-inner"
+      style="width: 250px; border: 1px solid #333;">
+      <h3 class="chai-text-color-#ffdd44 chai-m-2">Static Mapping</h3>
+      <p class="chai-fs-4 chai-text-color-#aaa">Supports text alignment, background colors, and font styles.</p>
+    </div>
+    <!-- Card 3 -->
+    <div class="chai-bg-#1e1e1e chai-p-6 chai-rounded-4 chai-shadow-inner"
+      style="width: 250px; border: 1px solid #333;">
+      <h3 class="chai-text-color-#ffdd44 chai-m-2">Hex Support</h3>
+      <p class="chai-fs-4 chai-text-color-#aaa">Directly use hex codes in classes like chai-bg-#1e1e1e.</p>
+    </div>
+  </div>
 
-          // 2. Dynamic Logic (Scaling)
-          if (isNaN(num) || value < 2 || value > 12) {
-            element.style[property] = type === "fs" ? "16px" : "4px"; // Default fallback
-          } else {
-            // Margin/Padding ke liye power of 2, Font-size/border ke liye value multiply 5
-            element.style[property] =
-              type === "fs" || type === "rounded"
-                ? `${value * 5}px`
-                : `${value ** 2}px`;
-          }
 
-          // Agar static map mein exists karti hai
-        } else if (staticMap[type]) {
-          const property = staticMap[type];
-          element.style[property] = `${value}`;
+  <script>
+    // sab utility object mein add honge
+    const utilityMap = {
+      p: "padding",
+      pt: "paddingTop",
+      pb: "paddingBottom",
+      pl: "paddingLeft",
+      pr: "paddingRight",
+      m: "margin",
+      mt: "marginTop",
+      mb: "marginBottom",
+      ml: "marginLeft",
+      mr: "marginRight",
+      fs: "fontSize",
+      rounded: "borderRadius",
+      w: "width",
+      h: "height",
+      bw: "borderWidth",
+      gap: "gap",
+      z: "zIndex",
+    };
+
+    const staticMap = {
+      text: "textAlign",
+      bg: "backgroundColor",
+      "text-color": "color",
+      "align-items": "alignItems",
+      "justify-content": "justifyContent",
+      "flex-wrap": "flexWrap",
+      "text-decoration": "textDecoration",
+      d: "display",
+      pos: "position",
+      fw: "fontWeight",
+      italic: "fontStyle",
+      shadow: "boxShadow",
+      cursor: "cursor",
+      overflow: "overflow",
+    };
+
+    function addInlineStyle(element, type, value) {
+      // Agar utility map mein exists karti hai
+      if (utilityMap[type]) {
+        const num = Number(value);
+        const property = utilityMap[type];
+
+        // 2. Dynamic Logic (Scaling)
+        if (isNaN(num) || value < 2 || value > 12) {
+          element.style[property] = type === "fs" ? "16px" : "4px"; // Default fallback
+        } else {
+          // Margin/Padding ke liye power of 2, Font-size/border ke liye value multiply 5
+          element.style[property] =
+            type === "fs" || type === "rounded"
+              ? `${value * 5}px`
+              : `${value ** 2}px`;
         }
+
+        // Agar static map mein exists karti hai
+      } else if (staticMap[type]) {
+        const property = staticMap[type];
+        element.style[property] = `${value}`;
       }
+    }
 
-      // Saara elements select hoga jisme 'chai-' class ho
-      const elements = document.querySelectorAll('[class*="chai-"]');
+    // Saara elements select hoga jisme 'chai-' class ho
+    const elements = document.querySelectorAll('[class*="chai-"]');
 
-      elements.forEach((element) => {
-        element.classList.forEach((className) => {
-          if (className.startsWith("chai-")) {
-            const parts = className.split("-"); // ['chai', 'p', '13']
 
-            // jb utility words 3 ho
-            if (parts.length <= 3) {
-              const type = parts[1]; // 'p', 'm','text' or 'fs'
-              const value = parts[2]; // '13' or 'textAlign'
+    elements.forEach((element) => {
+      element.classList.forEach((className) => {
+        if (className.startsWith("chai-")) {
+          const parts = className.split("-"); // ['chai', 'p', '13']
 
-              addInlineStyle(element, type, value);
-            }
-            //jb utility words 3 se jyada ho
-            else if (parts.length === 4) {
-              const concatProperty = `${parts[1]}-${parts[2]}`; //text + - + color
-              const type = concatProperty;
-              const lastElement = parts.length - 1; // 4-1
-              const value = parts[lastElement];
+          // jb utility words 3 ho
+          if (parts.length <= 3) {
+            const type = parts[1]; // 'p', 'm','text' or 'fs'
+            const value = parts[2]; // '13' or 'textAlign'
 
-              addInlineStyle(element, type, value);
-            }
+            addInlineStyle(element, type, value);
           }
-        });
+          //jb utility words 3 se jyada ho
+          else if (parts.length === 4) {
+            const concatProperty = `${parts[1]}-${parts[2]}`; //text + - + color
+            const type = concatProperty;
+            const lastElement = parts.length - 1; // 4-1
+
+            const value = parts[lastElement];
+
+            addInlineStyle(element, type, value);
+          }
+        }
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>
+
