@@ -4,19 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chai Tailwind</title>
 </head>
 
 <body>
-    <h1 class="chai-p-13 chai-m-2 chai-fs-8">Hello World</h1>
+    <h1 class="chai-rounded-2 chai-pos-relative chai-fs-8 chai-d-flex chai-bg-red chai-italic-italic chai-shadow-inner">
+        Hello World</h1>
 
     <script>
         // sab utility object mein add honge
         const utilityMap = {
             'p': 'padding',
+            'pt': 'paddingTop',
+            'pb': 'paddingBottom',
+            'pl': 'paddingLeft',
+            'pr': 'paddingRight',
             'm': 'margin',
-            'fs': 'font-size',
-            'rounded': 'border-radius'
+            'mt': 'marginTop',
+            'mb': 'marginBottom',
+            'ml': 'marginLeft',
+            'mr': 'marginRight',
+            'fs': 'fontSize',
+            'rounded': 'borderRadius',
+            'w': 'width',
+            'h': 'height',
+            'bw': 'borderWidth',
+            'gap': 'gap',
+            'z': 'zIndex',
+        };
+
+        const staticMap = {
+            'text': 'textAlign',
+            'bg': 'backgroundColor',
+            'text-color': 'color',
+            'd': 'display',
+            'pos': 'position',
+            'fw': 'fontWeight',
+            'italic': 'fontStyle',
+            'shadow': 'boxShadow',
+            'cursor': 'cursor',
+            'overflow': 'overflow'
         };
 
         // Saara elements select hoga jisme 'chai-' class ho
@@ -24,26 +51,29 @@
 
         elements.forEach(el => {
             el.classList.forEach(className => {
+
                 if (className.startsWith('chai-')) {
                     const parts = className.split('-'); // ['chai', 'p', '13']
-                    const type = parts[1];              // 'p', 'm', or 'fs'
-                    const value = Number(parts[2]);     // 13
+                    const type = parts[1];              // 'p', 'm','text' or 'fs'
+                    const value = parts[2];     // '13' or 'textAlign' 
+                    console.log(`Processing: ${className} | Type: ${type} | Value: ${value}`);
 
                     // Agar utility map mein exists karti hai
                     if (utilityMap[type]) {
+                        const num = Number(value);
                         const property = utilityMap[type];
-                        let finalValue;
 
                         // 2. Dynamic Logic (Scaling)
-                        if (isNaN(value) || value < 2 || value > 12) {
-                            finalValue = (type === 'fs') ? "16px" : "4px"; // Default fallback
+                        if (isNaN(num) || value < 2 || value > 12) {
+                            el.style[property] = (type === 'fs') ? "16px" : "4px"; // Default fallback
                         } else {
-                            // Margin/Padding ke liye power of 2, Font-size/border ke liye alag logic 
-                            finalValue = (type === 'fs') || (type === 'rounded') ? `${value * 5}px` : `${value ** 2}px`;
+                            // Margin/Padding ke liye power of 2, Font-size/border ke liye value multiply 5 
+                            el.style[property] = (type === 'fs') || (type === 'rounded') ? `${value * 5}px` : `${value ** 2}px`;
                         }
-
-                        // 3. Apply style dynamically
-                        el.style[property] = finalValue;
+                        // Agar static map mein exists karti hai
+                    } else if (staticMap[type]) {
+                        const property = staticMap[type]
+                        el.style[property] = `${value}`
                     }
                 }
             });
