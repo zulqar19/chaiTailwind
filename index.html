@@ -75,7 +75,7 @@
       const elements = document.querySelectorAll('[class*="chai-"]');
 
       elements.forEach((element) => {
-        el.classList.forEach((className) => {
+        element.classList.forEach((className) => {
           if (className.startsWith("chai-")) {
             const parts = className.split("-"); // ['chai', 'p', '13']
 
