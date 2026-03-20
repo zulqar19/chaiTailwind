@@ -1,85 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chai Tailwind</title>
-</head>
+  </head>
 
-<body>
-    <h1 class="chai-rounded-2 chai-pos-relative chai-fs-8 chai-d-flex chai-bg-red chai-italic-italic chai-shadow-inner">
-        Hello World</h1>
-
+  <body>
+    <h1
+      class="chai-text-color-white chai-d-flex chai-bg-#1e1e1e chai-italic-italic chai-shadow-inner chai-rounded-2 chai-pos-relative"
+    >
+      Hello World
+    </h1>
     <script>
-        // sab utility object mein add honge
-        const utilityMap = {
-            'p': 'padding',
-            'pt': 'paddingTop',
-            'pb': 'paddingBottom',
-            'pl': 'paddingLeft',
-            'pr': 'paddingRight',
-            'm': 'margin',
-            'mt': 'marginTop',
-            'mb': 'marginBottom',
-            'ml': 'marginLeft',
-            'mr': 'marginRight',
-            'fs': 'fontSize',
-            'rounded': 'borderRadius',
-            'w': 'width',
-            'h': 'height',
-            'bw': 'borderWidth',
-            'gap': 'gap',
-            'z': 'zIndex',
-        };
+      // sab utility object mein add honge
+      const utilityMap = {
+        p: "padding",
+        pt: "paddingTop",
+        pb: "paddingBottom",
+        pl: "paddingLeft",
+        pr: "paddingRight",
+        m: "margin",
+        mt: "marginTop",
+        mb: "marginBottom",
+        ml: "marginLeft",
+        mr: "marginRight",
+        fs: "fontSize",
+        rounded: "borderRadius",
+        w: "width",
+        h: "height",
+        bw: "borderWidth",
+        gap: "gap",
+        z: "zIndex",
+      };
 
-        const staticMap = {
-            'text': 'textAlign',
-            'bg': 'backgroundColor',
-            'text-color': 'color',
-            'd': 'display',
-            'pos': 'position',
-            'fw': 'fontWeight',
-            'italic': 'fontStyle',
-            'shadow': 'boxShadow',
-            'cursor': 'cursor',
-            'overflow': 'overflow'
-        };
+      const staticMap = {
+        text: "textAlign",
+        bg: "backgroundColor",
+        "text-color": "color",
+        d: "display",
+        pos: "position",
+        fw: "fontWeight",
+        italic: "fontStyle",
+        shadow: "boxShadow",
+        cursor: "cursor",
+        overflow: "overflow",
+      };
 
-        // Saara elements select hoga jisme 'chai-' class ho
-        const elements = document.querySelectorAll('[class*="chai-"]');
+      function addInlineStyle(element, type, value) {
+        // Agar utility map mein exists karti hai
+        if (utilityMap[type]) {
+          const num = Number(value);
+          const property = utilityMap[type];
 
-        elements.forEach(el => {
-            el.classList.forEach(className => {
+          // 2. Dynamic Logic (Scaling)
+          if (isNaN(num) || value < 2 || value > 12) {
+            element.style[property] = type === "fs" ? "16px" : "4px"; // Default fallback
+          } else {
+            // Margin/Padding ke liye power of 2, Font-size/border ke liye value multiply 5
+            element.style[property] =
+              type === "fs" || type === "rounded"
+                ? `${value * 5}px`
+                : `${value ** 2}px`;
+          }
 
-                if (className.startsWith('chai-')) {
-                    const parts = className.split('-'); // ['chai', 'p', '13']
-                    const type = parts[1];              // 'p', 'm','text' or 'fs'
-                    const value = parts[2];     // '13' or 'textAlign' 
-                    console.log(`Processing: ${className} | Type: ${type} | Value: ${value}`);
+          // Agar static map mein exists karti hai
+        } else if (staticMap[type]) {
+          const property = staticMap[type];
+          element.style[property] = `${value}`;
+        }
+      }
 
-                    // Agar utility map mein exists karti hai
-                    if (utilityMap[type]) {
-                        const num = Number(value);
-                        const property = utilityMap[type];
+      // Saara elements select hoga jisme 'chai-' class ho
+      const elements = document.querySelectorAll('[class*="chai-"]');
 
-                        // 2. Dynamic Logic (Scaling)
-                        if (isNaN(num) || value < 2 || value > 12) {
-                            el.style[property] = (type === 'fs') ? "16px" : "4px"; // Default fallback
-                        } else {
-                            // Margin/Padding ke liye power of 2, Font-size/border ke liye value multiply 5 
-                            el.style[property] = (type === 'fs') || (type === 'rounded') ? `${value * 5}px` : `${value ** 2}px`;
-                        }
-                        // Agar static map mein exists karti hai
-                    } else if (staticMap[type]) {
-                        const property = staticMap[type]
-                        el.style[property] = `${value}`
-                    }
-                }
-            });
+      elements.forEach((element) => {
+        el.classList.forEach((className) => {
+          if (className.startsWith("chai-")) {
+            const parts = className.split("-"); // ['chai', 'p', '13']
+
+            // jb utility words 3 ho
+            if (parts.length <= 3) {
+              const type = parts[1]; // 'p', 'm','text' or 'fs'
+              const value = parts[2]; // '13' or 'textAlign'
+
+              addInlineStyle(element, type, value);
+            }
+            //jb utility words 3 se jyada ho
+            else if (parts.length === 4) {
+              const concatProperty = `${parts[1]}-${parts[2]}`; //text + - + color
+              const type = concatProperty;
+              const lastElement = parts.length - 1; // 4-1
+              const value = parts[lastElement];
+
+              addInlineStyle(element, type, value);
+            }
+          }
         });
-
+      });
     </script>
-</body>
-
+  </body>
 </html>
