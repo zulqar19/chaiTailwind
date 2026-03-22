@@ -30,7 +30,7 @@ You can build complex UI components entirely with utility classes. Here is how a
 ------------------------------
 ## 🖼️ Project Showcase
 <p align="center">
-  <img src="\images\hero.png" width="300" height="300" />
+  <img src="\src\images\hero.png" width="300" height="300" />
 </p>
 
 ------------------------------
